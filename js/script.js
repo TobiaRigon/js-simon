@@ -1,51 +1,75 @@
 const numeriSimon = document.getElementById("numeri_simon");
+const verdetto = document.getElementById("risultato");
+const risultatoGiusti = document.getElementById("numeri_individuati");
+const risultatoSbagliati = document.getElementById("numeri_sbagliati");
 
-
-let numeriIndovinati;
-let numeriSbagliati;
-
-// Generazione dei numeri casuali
+numeriIndovinati = [];
+numeriSbagliati = [];
 let numeriCasuali;
-numeriCasuali = generaNumeriCasuali();
+
+// esegui funzione gioco
+
+giocoSimonSays();
 
 
-// Chiamata per mostrare i numeri
-mostraNumeri();
+// ===========FUNZIONI===================
 
 
-//  nascondi numeri
+// Funzione Gioco Simon Says
 
-setTimeout(nascondiNumeri,2900)
+function giocoSimonSays(){
 
 
-// dope 30 secondi 
-setTimeout(() => {
+    // Generazione dei numeri casuali
     
-   
-
-    // Chiedi numeri utente
-    const numeriUtente = chiediNumeriUtente();
-
-    //  confronta numeri
-    const risultatiConfronto = confrontaNumeri(numeriCasuali, numeriUtente);
+    numeriCasuali = generaNumeriCasuali();
 
 
-
-    // visualizza risultati
-    console.log("Numeri indovinati:", numeriIndovinati);
-    console.log("Numeri sbagliati:", numeriSbagliati);
-
- },
-  3000); // 30 secondi
+    // Chiamata per mostrare i numeri
+    mostraNumeri();
 
 
+    //  nascondi numeri
+    setTimeout(nascondiNumeri,2990)
 
 
+    // dope 30 secondi 
+    setTimeout(() => {
+        
+    
+
+        // Chiedi numeri utente
+        const numeriUtente = chiediNumeriUtente();
+
+        //  confronta numeri
+        const risultatiConfronto = confrontaNumeri(numeriCasuali, numeriUtente);
+
+        // visualizza risultati
+        if (numeriIndovinati.length === 1){
+            verdetto.innerHTML = `Mi dispiace. Hai indovinato solo ${numeriIndovinati.length} numero,
+            ne hai dimenticati ${numeriSbagliati.length} `
+        }
+        else if (numeriIndovinati.length >= (numeriCasuali.length / 2)){
+            verdetto.innerHTML = `Complimenti! Hai indovinato ${numeriIndovinati.length} numeri,
+            ne hai dimenticati solo ${numeriSbagliati.length} `
+        }else if  (numeriIndovinati.length === 0){
+            verdetto.innerHTML =`Mi dispiace.Non hai indovinato nessun numero.`
+        }else{
+            verdetto.innerHTML =`Mi dispiace. Hai indovinato solo ${numeriIndovinati.length} numeri,
+            ne hai dimenticati ${numeriSbagliati.length} `
+        };
+
+        risultatoGiusti.innerHTML = "Numeri indovinati:" + numeriIndovinati;
+        risultatoSbagliati.innerHTML = "Numeri sbagliati:" + numeriSbagliati;
 
 
+        console.log("Numeri indovinati:", numeriIndovinati);
+        console.log("Numeri sbagliati:", numeriSbagliati);
 
+    },
+    3000); // 30 secondi
 
-
+}
 
 // Funzione mostrare i numeri
 function mostraNumeri() {
@@ -79,13 +103,9 @@ function chiediNumeriUtente() {
     return numeriUtente;
 }
 
-
-
 // funzione confronta numeri
 function confrontaNumeri(numeriCasuali, numeriUtente) {
-    numeriIndovinati = [];
-    numeriSbagliati = [];
-  
+    
     // Confronta i numeri e riempi gli array appropriati
     for (let i = 0; i < 5; i++) {
       if (numeriCasuali.includes(numeriUtente[i])) {
