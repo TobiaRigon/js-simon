@@ -13,13 +13,15 @@ numeriCasuali = generaNumeriCasuali();
 mostraNumeri();
 
 
+//  nascondi numeri
 
+setTimeout(nascondiNumeri,2900)
 
 
 // dope 30 secondi 
 setTimeout(() => {
-    //  nascondi numeri
-    numeriSimon.innerHTML = "";
+    
+   
 
     // Chiedi numeri utente
     const numeriUtente = chiediNumeriUtente();
@@ -95,3 +97,8 @@ function confrontaNumeri(numeriCasuali, numeriUtente) {
   
     return { numeriIndovinati, numeriSbagliati };
   }
+
+//    funzione nascondi numeri
+function nascondiNumeri(){
+    numeriSimon.innerHTML = "";
+};
