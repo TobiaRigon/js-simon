@@ -30,7 +30,7 @@ function giocoSimonSays(){
 
 
     //  nascondi numeri
-    setTimeout(nascondiNumeri,2990)
+    setTimeout(nascondiNumeri,29990)
 
 
     // dope 30 secondi 
@@ -67,7 +67,7 @@ function giocoSimonSays(){
         console.log("Numeri sbagliati:", numeriSbagliati);
 
     },
-    3000); // 30 secondi
+    30000); // 30 secondi
 
 }
 
